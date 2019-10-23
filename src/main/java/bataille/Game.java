@@ -8,7 +8,7 @@ public class Game {
 	private Player p1;
 
 	public Game() {
-    	int[] list = new int[] {3,4,2,5};	
+    	int[] list = new int[] {3};	
     	int taille = 10;
     	System.out.println("Nom joueur 1 :");
     	String p1_name = SCANNER.nextLine();
@@ -25,6 +25,7 @@ public class Game {
 	public void start() {
 		while(!isGameOver()) {
 			p2.showGrille();
+			System.out.println(p1.getName()+" -> "+p2.getName());
 			p1.attack(p2);
 			if(!isGameOver()) {
 				p1.showGrille();

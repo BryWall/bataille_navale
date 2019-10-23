@@ -20,6 +20,9 @@ public class Player {
 
     public String getName() {
         return name;
+	}
+	public Grille getGrille() {
+        return this.grille;
     }
 
     public ArrayList<Bateau> getBateaux() {
@@ -33,13 +36,14 @@ public class Player {
 
     private void addBateauxToGrille(){
     	System.out.println("Placement des bateaux");
-    	for(int taille : this.nb_bateaux) {
+		for(int taille : this.nb_bateaux) {
     		Bateau b = this.scanner.addBateau(taille);
-    		while(! this.grille.addBateau(b)) {
+    		while(!this.grille.canAddBateau(b)) {
     			System.out.println("Impossible de placer le bateau, veuillez réessayer à un autre endroit");
     			b= this.scanner.addBateau(taille);
     		}
-    		System.out.println("Bâteau placé !");
+			System.out.println("Bâteau placé !");
+			this.grille.addBateau(b);
     	}
     	System.out.println(this.grille.toString());
     }
@@ -47,10 +51,11 @@ public class Player {
     public void attack(Player p2) {
     	if(!p2.isGameOver()) {
     		System.out.println("Your turn "+this.name);
-        	int[] coord = this.scanner.getCoord();
+			int[] coord = this.scanner.getCoord();
         	while(p2.isAlreadyUsed(coord)) {
         		coord = this.scanner.getCoord();
-        	}
+			}
+			p2.getGrille().attack(coord);
         	if(p2.isTouched(coord)) {
         		this.attack(p2);
         	}
@@ -64,12 +69,6 @@ public class Player {
     
     public boolean isTouched(int[] coord) {
     	boolean touched = this.grille.isTouched(coord);
-    	if(touched) {
-    		System.out.println("Touched !");
-    	}
-    	else {
-    		System.out.println("Not Touched!");
-    	}
     	this.showGrille();
     	return touched;
     }
@@ -77,6 +76,7 @@ public class Player {
     public void showGrille() {
     	System.out.println("Grille de "+this.name);
     	System.out.println(this.grille.toStringHidden());
-    }
+	}
+	
     
 }
