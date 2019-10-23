@@ -29,16 +29,23 @@ public class MyScanner {
 	public int[] getCoord() {
 		int dim = this.grille.getDimension();
 		System.out.println("X (0 -> "+(dim-1)+")");
-		int x = Integer.parseInt(SCANNER.nextLine());
-		while(x<0 && x>(dim-1)) {
-			System.out.println("Entre 0 et "+(dim-1));
-			x = Integer.parseInt(SCANNER.nextLine());
+		int x = dim;
+		while((x<0)||(x>(dim-1))){
+			try{
+				x = Integer.parseInt(SCANNER.nextLine());
+			}catch(Exception e){
+				System.out.println("Veuillez saisir un chiffre dans l'intervalle");
+			}
 		}
+
 		System.out.println("Y (0 -> "+(dim-1)+")");
-		int y = Integer.parseInt(SCANNER.nextLine());
-		while(y<0 && y>(dim-1)) {
-			System.out.println("Entre 0 et "+(dim-1));
-			y = Integer.parseInt(SCANNER.nextLine());
+		int y = dim;
+		while((y<0)||(y>(dim-1))){
+			try{
+				y = Integer.parseInt(SCANNER.nextLine());
+			}catch(Exception e){
+				System.out.println("Veuillez saisir un chiffre dans l'intervalle");
+			}
 		}
 		return new int[] {x,y};
 	}

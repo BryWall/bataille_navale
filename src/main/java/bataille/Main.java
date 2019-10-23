@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import javax.swing.SwingUtilities;
 
+import bataille.MonLanceurDeFenetre;
+
 public class Main {
 	public final static Scanner SCANNER = new Scanner(System.in);
 	

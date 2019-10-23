@@ -12,12 +12,14 @@ public class GrilleTest {
     Grille g;
     Grille g1;
     Bateau  b1;
+    Bateau b2 ; 
 
     @Before
     public void init(){
         g = new Grille(3, 1);
         g1 = new Grille(1, 1);
         b1 = new Bateau(1,0,0,"H");
+        b2 = new Bateau(1, 0, 0, "H");
     }
 
     @Test

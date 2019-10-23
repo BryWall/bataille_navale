@@ -8,7 +8,7 @@ public class Game {
 	private Player p1;
 
 	public Game() {
-    	int[] list = new int[] {3};	
+    	int[] list = new int[] {3,4};	
     	int taille = 10;
     	System.out.println("Nom joueur 1 :");
     	String p1_name = SCANNER.nextLine();
