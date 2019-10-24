@@ -9,13 +9,15 @@ public class Player {
     private String name;
     private int[] nb_bateaux;
 	private MyScanner scanner;
+	private boolean turn;
 
     public Player(String name, int dimension_grille, int[] nb_bat) {
         this.grille = new Grille(dimension_grille,nb_bat.length);
         this.name = name;
         this.nb_bateaux = nb_bat;
         this.scanner = new MyScanner(this.grille);
-        this.addBateauxToGrille();
+		this.addBateauxToGrille();
+		this.turn = false;
     }
 
     public String getName() {
@@ -49,7 +51,7 @@ public class Player {
     }
     
     public void attack(Player p2) {
-    	if(!p2.isGameOver()) {
+    	if((!p2.isGameOver()) && this.isTurn()) {
     		System.out.println("Your turn "+this.name);
 			int[] coord = this.scanner.getCoord();
         	while(p2.isAlreadyUsed(coord)) {
@@ -58,7 +60,19 @@ public class Player {
 			p2.getGrille().attack(coord);
         	if(p2.isTouched(coord)) {
         		this.attack(p2);
-        	}
+			}
+			this.turnOff();
+    	}
+	}
+	
+	public void attack(Player p2, int[] coord) {
+    	if((!p2.isGameOver()) && this.isTurn()) {
+    		System.out.println("Your turn "+this.name);
+			p2.getGrille().attack(coord);
+        	if(!p2.isTouched(coord)) {
+				this.turnOff();
+				p2.turnOn();
+			}
     	}
     }
     
@@ -78,5 +92,16 @@ public class Player {
     	System.out.println(this.grille.toStringHidden());
 	}
 	
+	public boolean isTurn(){
+		return  this.turn;
+	}
+
+	public void turnOn(){
+		this.turn = true;
+	}
+
+	public void turnOff(){
+		this.turn = false;
+	}
     
 }

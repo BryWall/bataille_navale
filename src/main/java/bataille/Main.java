@@ -14,8 +14,7 @@ public class Main {
 
     	Game game = new Game();
     	game.start();
-    	//MonLanceurDeFenetre launcher = new MonLanceurDeFenetre();
-    	//SwingUtilities.invokeLater(launcher);
+    	
     }
     
 }
