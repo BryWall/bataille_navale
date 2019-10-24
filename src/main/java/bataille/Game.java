@@ -13,7 +13,7 @@ public class Game {
 	private MonLanceurDeFenetre launcherP2;
 
 	public Game() {
-    	int[] list = new int[] {3,2,5,4};	
+    	int[] list = new int[] {5,4,3,2};	
     	int taille = 10;
     	System.out.println("Nom joueur 1 :");
     	String p1_name = SCANNER.nextLine();
