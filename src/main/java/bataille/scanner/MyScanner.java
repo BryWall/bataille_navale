@@ -14,7 +14,6 @@ public class MyScanner {
 	}
 	
 	public Bateau addBateau(int taille) {
-		System.out.println(grille.toString());
 		System.out.println("Veuillez placer un bateau de taille "+ taille + " :");
 		System.out.println("Orientation (Horizontale (H) ou Verticale (V))");
 		String orientation = SCANNER.nextLine();

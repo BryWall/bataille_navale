@@ -12,11 +12,13 @@ public class MonListenerBouton implements ActionListener {
 	private ArrayList<JButton> buttons;
 	private Game game;
 	private Player player;
+	private MaFenetre fenetre;
 
-	public MonListenerBouton(ArrayList<JButton> b, Game game, Player p) {
+	public MonListenerBouton(ArrayList<JButton> b, Game game, Player p, MaFenetre fenetre) {
 		this.buttons = b;
 		this.game = game;
 		this.player = p;
+		this.fenetre = fenetre;
 	}
 
 	@Override
@@ -38,10 +40,15 @@ public class MonListenerBouton implements ActionListener {
 			((AbstractButton) source).setBackground(Color.RED);
 		}
 		if(cell.toString().trim().equals("3")){
-			((AbstractButton) source).setBackground(Color.GRAY);
+			((AbstractButton) source).setBackground(Color.BLUE);
 		}
-		((AbstractButton) source).setText(cell.toString());
+		if(this.player.isTurn()){
+			this.fenetre.setVisible(false);
+			this.game.changeFenetre(me);
+		}
+
 		
+			
 		
 		
 	}

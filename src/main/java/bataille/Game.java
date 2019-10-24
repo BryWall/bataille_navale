@@ -9,9 +9,11 @@ public class Game {
 	public final static Scanner SCANNER = new Scanner(System.in);
 	private Player p2;
 	private Player p1;
+	private MonLanceurDeFenetre launcherP1;
+	private MonLanceurDeFenetre launcherP2;
 
 	public Game() {
-    	int[] list = new int[] {3};	
+    	int[] list = new int[] {3,2,5,4};	
     	int taille = 10;
     	System.out.println("Nom joueur 1 :");
     	String p1_name = SCANNER.nextLine();
@@ -19,6 +21,10 @@ public class Game {
     	System.out.println("Nom joueur 2 :");
     	String p2_name = SCANNER.nextLine();
 		this.p2 = new Player(p2_name, taille, list);
+		this.launcherP1 = new MonLanceurDeFenetre(this.p1,this);
+		SwingUtilities.invokeLater(launcherP1);
+		this.launcherP2 = new MonLanceurDeFenetre(this.p2,this);
+    	SwingUtilities.invokeLater(launcherP2);
 	}
 
 	public boolean isGameOver() {
@@ -26,29 +32,18 @@ public class Game {
 	}
 	
 	public void start() {
-		MonLanceurDeFenetre launcherP1 = new MonLanceurDeFenetre(this.p1,this);
-		SwingUtilities.invokeLater(launcherP1);
-		MonLanceurDeFenetre launcherP2 = new MonLanceurDeFenetre(this.p2,this);
-    	SwingUtilities.invokeLater(launcherP2);
-		while(!isGameOver()) {
-			p2.showGrille();
-			System.out.println(p1.getName()+" -> "+p2.getName());
-			p1.turnOn();
-			p1.attack(p2);
-			if(!isGameOver()) {
-				p1.showGrille();
-				p2.turnOn();
-				p2.attack(p1);
-			}
-		}
-		this.showWinner();
+		this.p1.turnOn();
 	}
 
 	private void showWinner() {
-		if(this.p1.isGameOver())
+		if(this.p1.isGameOver()){
 			System.out.println(p2.getName()+ " won !");
-		else
-			System.out.println(p1.getName()+ " won !");
+		}
+			
+		else{
+			System.out.println(p2.getName()+ " won !");
+		}
+			
 		
 	}
 	
@@ -60,5 +55,12 @@ public class Game {
 		return this.p2;
 	}
 	
-	
+	public void changeFenetre(Player p){
+		if(p.equals(p1)){
+			this.launcherP2.open();
+		}
+		else{
+			this.launcherP1.open();
+		}
+	}
 }

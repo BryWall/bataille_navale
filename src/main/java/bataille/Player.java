@@ -47,7 +47,6 @@ public class Player {
 			System.out.println("Bâteau placé !");
 			this.grille.addBateau(b);
     	}
-    	System.out.println(this.grille.toString());
     }
     
     public void attack(Player p2) {
@@ -73,7 +72,10 @@ public class Player {
 				this.turnOff();
 				p2.turnOn();
 			}
-    	}
+		}
+		if(p2.isGameOver()){
+			System.out.println(this.name+" won !");
+		}
     }
     
     public boolean isAlreadyUsed(int[] coord) {

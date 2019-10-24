@@ -29,7 +29,7 @@ public class MaFenetre extends JFrame {
 	
 	private JPanel construisMoiUnPanel() {
 		JPanel panel = new JPanel();
-		MonListenerBouton listener = new MonListenerBouton(this.buttons, this.game, this.player);
+		MonListenerBouton listener = new MonListenerBouton(this.buttons, this.game, this.player,this);
 		int dim = this.player.getGrille().getDimension();
 		GridLayout grid = new GridLayout(dim,dim);
 		panel.setLayout(grid);
@@ -37,12 +37,12 @@ public class MaFenetre extends JFrame {
 		for(int i = 0 ; i< dim ; i++){
 			for(int j = 0 ; j<dim ; j++){
 				String str = this.player.getGrille().getCell(j, i).toString().trim();
-				JButton b = new JButton(str);
+				JButton b = new JButton();
 				if(str.equals("0")){
-					b.setBackground(Color.BLUE);
+					b.setBackground(Color.GRAY);
 				}
 				if(str.equals("1")){
-					b.setBackground(Color.GREEN);
+					b.setBackground(Color.GRAY);
 				}
 				b.setOpaque(true);
 				this.buttons.add(b);
